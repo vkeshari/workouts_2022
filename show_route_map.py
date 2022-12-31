@@ -46,7 +46,7 @@ hexplot = ax.hexbin(x = xs, y = ys, C = vals, gridsize = 300,
 cbar = plt.colorbar(hexplot,
                     shrink = 0.85, aspect = 50,
                     format = "%d", pad = 0.01,
-                    ticks = [1, 2, 5, 10, 50, 100, 500])
+                    ticks = [1, 2, 5, 10, 20, 50, 100, 200, 500])
 cbar.ax.tick_params(labelsize = 20)
 cbar.set_label("No. of Days", size = 20)
 
