@@ -33,7 +33,7 @@ DATA_BY_DAY_FILENAME = 'dates_to_ptval.data'
 OUT_ANIMATION_FILENAME = 'sf_map_animated.mp4'
 ANIMATION_MIN_DATE = date(2021, 1, 1)
 ANIMATION_MAX_DATE = date(2023, 1, 1)
-ANIMATION_FPS = 30
+ANIMATION_FPS = 12
 ONE_DAY = timedelta(days=1)
 
 def build_base_map():
