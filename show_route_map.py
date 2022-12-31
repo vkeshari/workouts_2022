@@ -53,7 +53,8 @@ def build_dynamic_map():
       continue
     xs.append(lon)
     ys.append(lat)
-    vals.append(dates)
+    vals.append(len(dates))
+    print (dates)
 
   fig.set_size_inches(IMAGE_SIZE, IMAGE_SIZE)
   hexplot = ax.hexbin(x = xs, y = ys, C = vals, gridsize = 300,

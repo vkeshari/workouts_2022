@@ -27,9 +27,9 @@ for f in sorted(os.listdir(ROUTE_DATA_DIR)):
     ele = eval(p[0].text)
 
     if (lon, lat) not in pts_to_dates:
-      pts_to_dates[(lon, lat)] = 1
+      pts_to_dates[(lon, lat)] = {d}
     else:
-      pts_to_dates[(lon, lat)] += 1
+      pts_to_dates[(lon, lat)].add(d)
 
   print(f + '\t' + 'Total points: ' + str(len(pts_to_dates)))
 
