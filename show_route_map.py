@@ -50,7 +50,7 @@ cbar = plt.colorbar(hexplot,
 cbar.ax.tick_params(labelsize = 20)
 cbar.set_label("No. of Days", size = 20)
 
-plt.title("Walking in San Francisco 2022-23", fontsize = 30)
+plt.title("Walking in San Francisco 2021-22", fontsize = 30)
 
 plt.show()
 fig.savefig(OUT_MAP_FILENAME, dpi = IMAGE_DPI)
