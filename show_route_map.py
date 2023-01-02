@@ -99,7 +99,8 @@ def build_static_map(start_date = ANIMATION_MIN_DATE, end_date_inclusive = ANIMA
   print ("Map written to " + out_filename)
   plt.close(fig)
 
-def rebuild_route_maps(start_date = ANIMATION_MIN_DATE, end_date = ANIMATION_MAX_DATE):
+def rebuild_route_maps(start_date = ANIMATION_MIN_DATE, end_date = ANIMATION_MAX_DATE,
+                        data_start_date = ANIMATION_MIN_DATE):
   with open(IN_FILENAME, 'rb') as f:
     pts_to_dates = pickle.load(f)
     print("Route data read from {}".format(IN_FILENAME))
@@ -107,7 +108,7 @@ def rebuild_route_maps(start_date = ANIMATION_MIN_DATE, end_date = ANIMATION_MAX
   d = start_date
   while d < end_date:
     route_map_filename = OUT_MAP_DIRNAME + '/' + d.isoformat() + ".png"
-    build_static_map(start_date = start_date, end_date_inclusive = d,
+    build_static_map(start_date = data_start_date, end_date_inclusive = d,
                       out_filename = route_map_filename, pts_to_dates = pts_to_dates,
                       show_fig = False, show_debug = False)
     d += ONE_DAY
@@ -116,7 +117,7 @@ def build_dynamic_map(start_date = ANIMATION_MIN_DATE, end_date = ANIMATION_MAX_
                       rebuild_each_map = True, last_frame_pad = LAST_FRAME_PAD,
                       skip_animation = False):
   if rebuild_each_map:
-    rebuild_route_maps(start_date = start_date, end_date = end_date)
+    rebuild_route_maps(start_date = start_date, end_date = end_date, data_start_date = start_date)
 
   if skip_animation:
     print ("Animation skipped")
@@ -157,5 +158,7 @@ def build_dynamic_map(start_date = ANIMATION_MIN_DATE, end_date = ANIMATION_MAX_
 #build_static_map(show_fig = False, show_debug = True)
 #build_static_map(start_date = date(2021, 1, 1), end_date_inclusive = date(2021, 2, 1) - ONE_DAY, show_fig = False, show_debug = True)
 
-build_dynamic_map(rebuild_each_map = False)
+#build_dynamic_map(rebuild_each_map = True)
 #build_dynamic_map(start_date = date(2021, 1, 1), end_date = date(2021, 2, 1), rebuild_each_map = True, skip_animation = True)
+
+rebuild_route_maps(start_date = date(2021, 1, 1), end_date = date(2021, 7, 1), data_start_date = date(2021, 1, 1))
