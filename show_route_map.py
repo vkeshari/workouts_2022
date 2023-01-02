@@ -158,7 +158,8 @@ def build_dynamic_map(start_date = ANIMATION_MIN_DATE, end_date = ANIMATION_MAX_
 #build_static_map(show_fig = False, show_debug = True)
 #build_static_map(start_date = date(2021, 1, 1), end_date_inclusive = date(2021, 2, 1) - ONE_DAY, show_fig = False, show_debug = True)
 
-#build_dynamic_map(rebuild_each_map = True)
+#rebuild_route_maps(start_date = date(2021, 1, 1), end_date = date(2021, 7, 1), data_start_date = date(2021, 1, 1))
+
+build_dynamic_map(rebuild_each_map = False)
 #build_dynamic_map(start_date = date(2021, 1, 1), end_date = date(2021, 2, 1), rebuild_each_map = True, skip_animation = True)
 
-rebuild_route_maps(start_date = date(2021, 1, 1), end_date = date(2021, 7, 1), data_start_date = date(2021, 1, 1))
