@@ -113,9 +113,14 @@ def rebuild_route_maps(start_date = ANIMATION_MIN_DATE, end_date = ANIMATION_MAX
     d += ONE_DAY
 
 def build_dynamic_map(start_date = ANIMATION_MIN_DATE, end_date = ANIMATION_MAX_DATE,
-                      rebuild_each_map = True, last_frame_pad = LAST_FRAME_PAD):
+                      rebuild_each_map = True, last_frame_pad = LAST_FRAME_PAD,
+                      skip_animation = False):
   if rebuild_each_map:
     rebuild_route_maps(start_date = start_date, end_date = end_date)
+
+  if skip_animation:
+    print ("Animation skipped")
+    return
 
   fig = plt.figure(figsize=(IMAGE_SIZE, IMAGE_SIZE), dpi = IMAGE_DPI)
 
@@ -125,7 +130,10 @@ def build_dynamic_map(start_date = ANIMATION_MIN_DATE, end_date = ANIMATION_MAX_
   with moviewriter.saving(fig, OUT_ANIMATION_FILENAME, dpi = IMAGE_DPI):
     d = start_date
     while d < end_date and pad > 0:
-      route_map_filename = OUT_MAP_DIRNAME + '/' + str(d) + ".png"
+      if d < end_date:
+        route_map_filename = OUT_MAP_DIRNAME + '/' + str(d) + ".png"
+      else:
+        route_map_filename = OUT_MAP_DIRNAME + '/' + str(end_date - ONE_DAY) + ".png"
       route_map = mpimg.imread(route_map_filename)
       print ("Route map read from " + route_map_filename)
 
@@ -149,5 +157,5 @@ def build_dynamic_map(start_date = ANIMATION_MIN_DATE, end_date = ANIMATION_MAX_
 #build_static_map(show_fig = False, show_debug = True)
 #build_static_map(start_date = date(2021, 1, 1), end_date_inclusive = date(2021, 2, 1) - ONE_DAY, show_fig = False, show_debug = True)
 
-build_dynamic_map(rebuild_each_map = True)
-#build_dynamic_map(start_date = date(2021, 1, 1), end_date = date(2021, 2, 1), rebuild_each_map = True)
+build_dynamic_map(rebuild_each_map = False)
+#build_dynamic_map(start_date = date(2021, 1, 1), end_date = date(2021, 2, 1), rebuild_each_map = True, skip_animation = True)
