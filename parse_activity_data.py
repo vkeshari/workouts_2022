@@ -9,6 +9,7 @@ DISTANCE_KEYWORD = 'HKQuantityTypeIdentifierDistanceWalkingRunning'
 STAND_KEYWORD = 'HKQuantityTypeIdentifierAppleStandTime'
 KEYWORDS = {ENERGY_KEYWORD, DISTANCE_KEYWORD, STAND_KEYWORD}
 EXCLUDE_KEYWORDS = {'WorkoutStatistics'}
+WATCH_KEYWORD = 'sourceName="VK Watch"'
 
 def cut_export_file():
   fin = open(ACTIVITY_FILENAME, 'r')
@@ -69,7 +70,7 @@ def build_data_map():
         if d not in date_to_energy:
           date_to_energy[d] = 0
         date_to_energy[d] += v
-      if DISTANCE_KEYWORD in l:
+      if DISTANCE_KEYWORD in l and WATCH_KEYWORD in l:
         if d not in date_to_distance:
           date_to_distance[d] = 0
         date_to_distance[d] += v
